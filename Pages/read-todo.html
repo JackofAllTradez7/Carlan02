@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>read todo</title>
+</head>
+<body>
+    <h1>read todo</h1>
+
+    <script>
+        fetch("/todo").then(function(todo)
+        {
+            todo.json().then(function(todojson)
+            {
+                console.log(todojson);
+                for (var i = 0; i < 10; i++)
+                {
+                var title = document.createElement("p");
+                title.innerText = todojson[i].title;
+                document.body.appendChild(title);
+                var id = document.createElement("p");
+                id.innerText = todojson[i].id;
+                document.body.appendChild(id);
+                var completed = document.createElement("p");
+                completed.innerText = todojson[i].completed;
+                document.body.appendChild(completed);
+                }
+            })
+        })
+    </script>
+</body>
+</html>
